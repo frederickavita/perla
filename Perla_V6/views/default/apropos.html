@@ -1,0 +1,53 @@
+{{extend 'acceuil.html'}}
+{{block contain}}
+<!-- content-section-starts -->
+<div class="content">
+<div class="container">
+  <div class="login-page">
+        <div class="dreamcrub">
+         <ul class="breadcrumbs">
+                  <li class="home">
+                     <a href="acceuil.html" title="Go to Home Page">{{=T("Acceuil")}}</a>&nbsp;
+                     <span>&gt;</span>
+                  </li>
+                  <li class="women">
+                     Login
+                  </li>
+              </ul>
+              <ul class="previous">
+                <li><a href="acceuil.html">{{=T("Page précédente")}}</a></li>
+              </ul>
+              <div class="clearfix"></div>
+       </div>
+       <div class="account_grid">
+			   <div class="col-md-6 login-left wow fadeInLeft" data-wow-delay="0.4s">
+			  	 <h1>{{=T("Perla, votre adresse de l'élégance")}}</h1>
+           <br>
+           <h2 Style="color: #929292;">{{=T("Perla en quelques mot")}}</h2>          
+				 <p Style="color: #929292;">{{=T("Perla.fr est une boutique en ligne de caftan, takchita, robe de soirée, accessoires et tenues orientales, toujours dans le vent des tendances et de l’originalité. Ses caftans et ses robes de soirée sont d’une inspiration orientale et de la haute couture française. Cet alliage permet de vous offrir des modèles du classique traditionnel au plus moderne. Perla s'adresse aux femmes qui cherchent des caftans et des tenues orientales aussi bien qu'aux femmes qui cherchent des robes de soirée inédites. Du caftan à la robe de soirée en passant par la takchita, la abaya, la djellaba et les accessoires, Perla.fr vous propose un choix étendu de produits adaptés à tous vos mariages, fêtes et cérémonies. ")}}</p>
+         <br>
+         <h2 Style="color: #929292;">{{=T("Pratique et intuitive")}}</h2>
+         <p Style="color: #929292;">{{=T("La boutique en ligne Perla est accessible à tous les internautes, simples visiteurs ou clients aguerris, nous mettons tout en œuvre pour que chacun s'y retrouve et prenne du plaisir à naviguer. De la présentation produit jusqu'à la commande, vous êtes  guidé(e).")}}</p>
+
+         <br>
+         <h2 Style="color: #929292;">{{=T("Un service complet, personnalisé et réactif")}}</h2>
+         <p Style="color: #929292;">{{=T("L’équipe de Perla se tient à votre disposition par téléphone, par émail, par formulaire de contact et même par sms. Nous traitons chaque demande avec le plus grand soin, de façon personnalisée et dans les bref délais.")}}</p>
+				 <a class="acount-btn" Style="background:orange;" href="enregistrement.html">{{=T("Créer un compte")}}</a>
+			   </div>
+			   
+			   <div class="clearfix"> </div>
+			 </div>
+		   </div>
+</div>
+
+
+{{include 'foot.html'}}
+
+
+<style media="screen">
+  .error{
+    color:red;
+
+  }
+</style>
+{{end}}

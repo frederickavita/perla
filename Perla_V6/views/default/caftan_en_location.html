@@ -1,0 +1,53 @@
+{{extend 'acceuil.html'}}
+{{block contain}}
+<script src="{{=URL('static', 'js/brython.js')}}"> </script>
+{{include 'barre.html'}}
+{{include 'promotion.html'}}
+{{include 'tag.html'}}
+</div>
+<div class="new-product">
+				<div class="new-product-top">
+					<ul class="product-top-list">
+						<li><a href="acceuil.html">{{=T("Acceuil")}}</a>&nbsp;<span>&gt;</span></li>
+						<li><span class="act">{{=T("Caftan en vente")}}</span>&nbsp;</li>
+					</ul>
+					<p class="back"><a href="acceuil.html">{{=T("Page précédente")}}</a></p>
+					<div class="clearfix"></div>
+				</div>
+
+        <div class="mens-toolbar">
+                   <div class="sort">
+                 	   <div class="sort-by">
+  			            <label>{{=T("TRIEZ PAR")}}</label>
+  			            <select id="selection">
+  			                            <option value="{{=Position}}">
+  			                    {{=T("Position")}}                </option>
+  			                            <option value="{{=Name}}">
+  			                    {{=T("Nom")}}                </option>
+  			                            <option value="{{=Price}}">
+  			                    {{=T("Prix")}}                </option>
+  			            </select>
+  			            <a href=""><img src="{{=URL('static', 'images/arrow2.gif')}}" alt="" class="v-middle"></a>
+  	                   </div>
+  	    		     </div>
+                {{include 'pagination.html'}}
+	               		 <div class="clearfix"></div>
+			        </div>
+					<!---728x90 -->
+          <div id="cbp-vm" class="cbp-vm-switcher cbp-vm-view-grid">
+         <div class="cbp-vm-options">
+           <a href="#" class="cbp-vm-icon cbp-vm-grid cbp-vm-selected" data-view="cbp-vm-view-grid" title="grid">Grid View</a>
+           <a href="#" class="cbp-vm-icon cbp-vm-list" data-view="cbp-vm-view-list" title="list">List View</a>
+         </div>
+
+        {{include 'page.html'}}
+
+
+           <div class="clearfix"></div>
+    {{include 'ensemble.html'}}
+    {{include 'produit.html'}}
+    {{include 'foot.html'}}
+
+
+
+{{end}}

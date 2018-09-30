@@ -1,0 +1,149 @@
+
+	<script src="{{=URL('static', 'js/brython.js')}}"> </script>
+<div class="news-letter">
+			<div class="container">
+				<div class="join">
+					<h6>Rejoindre la Newslettre</h6>
+					<div class="sub-left-right">
+            {{=form3.custom.begin}}
+            {{form3.custom.widget.email['_class']=''}}
+            {{form3.custom.widget.email['_type']='text'}}
+            {{form3.custom.widget.email['_id']='validtap'}}
+            {{form3.custom.widget.email['_placeholder']='Entrer votre email'}}
+            {{=form3.custom.widget.email}}
+            {{form3.custom.submit['_class']=''}}
+            {{form3.custom.submit['_id']='validemail'}}
+            {{form3.custom.submit['_value']='Soumettre'}}
+            {{=form3.custom.submit}}
+            {{=form3.custom.end}}
+					</div>
+					<div class="clearfix"> </div>
+
+					{{if response.flash == auth.messages.invalid_login:}}
+					{{print("bonjour")}}
+				{{else:}}
+
+          <div  id="validing"   style="color:green" class="container text-center">
+          {{=response.flash or ''}}
+
+          </div>
+
+					{{pass}}
+
+    <div id="error" style="color:red;" class="container text-center">
+
+      {{if form3.errors:}}
+
+  <ul  class="list-unstyled">
+  {{for fieldname in form3.errors:}}
+    <li>{{=fieldname}} error: {{=form3.errors[fieldname]}}</li>
+  {{pass}}
+  </ul>
+  {{form3.errors.clear()}}
+{{pass}}
+
+    </div>
+
+				</div>
+			</div>
+		</div>
+		
+		<footer style="background:#323a45; color:#878c93;" >
+			<div class="fh5co-overlay" style="color:#878c93;"></div>
+			<div class="fh5co-footer-content">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-3 col-sm-4 col-md-push-3">
+							<h3 class="fh5co-lead" style="color:#778899;">à propos</h3>
+							<ul>
+								<li><a href="apropos" style="color:#878c93;">Qui nous sommes</a></li>
+								<li><a href="securite"style="color:#878c93;">Sécurité</a></li>
+							</ul>
+						</div>
+						<div class="col-md-3 col-sm-4 col-md-push-3">
+							<h3 class="fh5co-lead" style="color:#778899;">Nous contacter</h3>
+							<ul>
+								<li><a href="contact"style="color:#878c93;">Contact</a></li>
+								<li><a href="#"style="color:#878c93;">Coordonnées</a></li>
+							</ul>
+						</div>
+						<div class="col-md-3 col-sm-4 col-md-push-3">
+							<h3 class="fh5co-lead" style="color:#778899;" >Conditions</h3>
+							<ul>
+								<li><a href="devente"style="color:#878c93;"> Conditions de vente</a></li>
+								<li><a href="delocation"style="color:#878c93;">Conditions de location</a></li>
+							</ul>
+						</div>
+
+						<div class="col-md-3 col-sm-12 col-md-pull-9">
+							<div class="fh5co-footer-logo" ><a href="index.html" style="color:#878c93;">PERLA</a></div>
+							<p class="fh5co-copyright"><small>&copy; 2017.Tous droits réservés.<br>par <a href="" target="_blank" style="color:#878c93;">Perla</a> </p>
+							<p class="fh5co-social-icons">
+								<a href="#"><i class="icon-twitter"></i></a>
+								<a href="#"><i class="icon-facebook"></i></a>
+								<a href="#"><i class="icon-instagram"></i></a>
+								<a href="#"><i class="icon-dribbble"></i></a>
+								<a href="#"><i class="icon-youtube"></i></a>
+							</p>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</footer>
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+<style media="screen">
+  .error{
+  color:red
+
+
+  }
+</style>
+
+
+<script type="text/python">
+from browser import document, window
+error = document.getElementById('error')
+valid  = document.getElementById('validing')
+d = valid.innerHTML
+
+
+
+
+if len(error.innerHTML) == 123:
+	window.scrollTo(0,document.body.scrollHeight)
+	window.jQuery('html,body').animate({'scrollTop': document.body.scrollHeight},"fast")
+elif len(d) == 42:
+	window.scrollTo(0,document.body.scrollHeight)
+	window.jQuery('html,body').animate({'scrollTop': document.body.scrollHeight},"fast")	
+
+	
+
+
+
+
+
+
+
+
+
+</script>
+
+<style type="text/css" media="screen">
+
+
+input#validtap {
+    color: black;
+}
+	
+</style>

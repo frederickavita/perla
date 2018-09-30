@@ -1,0 +1,69 @@
+{{extend 'acceuil.html'}}
+{{block contain}}
+<!-- content-section-starts -->
+<div class="content">
+<div class="container">
+  <div class="login-page">
+        <div class="dreamcrub">
+         <ul class="breadcrumbs">
+                  <li class="home">
+                     <a href="acceuil.html" title="Go to Home Page">{{=T("Acceuil")}}</a>&nbsp;
+                     <span>&gt;</span>
+                  </li>
+                  <li class="women">
+                     Login
+                  </li>
+              </ul>
+              <ul class="previous">
+                <li><a href="acceuil.html">{{=T("Page précédente")}}</a></li>
+              </ul>
+              <div class="clearfix"></div>
+       </div>
+       <div class="account_grid">
+			   <div class="col-md-6 login-left wow fadeInLeft" data-wow-delay="0.4s">
+			  	 <h2>{{=T("NOUVEAU SUR PERLA: Ouvrez un compte gratuitement.")}}</h2>
+				 <h4>{{=T("Louez, achetez des caftans, des robes de soirée ou des accessoires en toute sécurité. ")}}</h4>
+         <br>
+				 <a class="acount-btn" style="background:orange;" href="enregistrement.html">{{=T("Créer un compte")}}</a>
+			   </div>
+			   <div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
+			  	<h3>{{=T("DÉJÀ CLIENT PERLA ? Connectez-vous")}}</h3>
+				      {{if response.flash == auth.messages.invalid_login:}}
+
+          <p style="color:red">{{=T("Votre email est invalide")}}</p>
+
+          {{pass}}
+
+
+
+
+    {{=form.custom.begin}}
+				  <div>
+					<span>Email<label>*</label></span>
+          {{=form.custom.widget.email}}
+				  </div>
+				  <div>
+					<span>{{=T("Mots de passe")}}<label>*</label></span>
+          {{=form.custom.widget.password}}
+				  </div>
+				  <a class="forgot" href="#">Mot de passe oublié?</a>
+          {{form.custom.submit['_value']='Login'}}
+          {{=form.custom.submit}}
+          {{=form.custom.end}}
+			   </div>
+			   <div class="clearfix"> </div>
+			 </div>
+		   </div>
+</div>
+
+
+{{include 'foot.html'}}
+
+
+<style media="screen">
+  .error{
+    color:red;
+
+  }
+</style>
+{{end}}

@@ -1,0 +1,138 @@
+{{extend 'acceuil.html'}}
+{{block contain}}
+
+<div class="banner">
+		<div class="container">
+<div class="banner-bottom">
+	<!--<div class="banner-bottom-left">
+		<h2 style="line-height:70px;">P<br>ER<br>LA</h2>
+	</div> -->
+	<div class="banner-bottom-right">
+		<div  class="callbacks_container">
+					<ul class="rslides" id="slider4">
+					<li>
+								<div class="banner-info">
+									<h3>La plus élégante</h3>
+									<p>Large choix de caftans</p>
+								</div>
+							</li>
+							<li>
+								<div class="banner-info">
+								   <h3>La plus chic</h3>
+									<p>Caftans modernes et traditionnels</p>
+								</div>
+							</li>
+							<li>
+								<div class="banner-info">
+								  <h3>La plus raffinée</h3>
+									<p>Large choix d'accessoires</p>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!--banner-->
+	  			<script src="{{=URL('static', 'js/responsiveslides.min.js')}}"></script>
+			 <script>
+			    // You can also use "$(window).load(function() {"
+			    $(function () {
+			      // Slideshow 4
+			      $("#slider4").responsiveSlides({
+			        auto: true,
+			        pager:true,
+			        nav:false,
+			        speed: 500,
+			        namespace: "callbacks",
+			        before: function () {
+			          $('.events').append("<li>before event fired.</li>");
+			        },
+			        after: function () {
+			          $('.events').append("<li>after event fired.</li>");
+			        }
+			      });
+
+			    });
+			  </script>
+	</div>
+	<div class="clearfix"> </div>
+</div>
+	<div class="shop">
+		<a href="acceuil.html">Choisir votre Caftan</a>
+	</div>
+	</div>
+		</div>
+		<!-- content-section-starts-here -->
+		<div class="container">
+			<div class="main-content">
+				<div class="online-strip">
+					<div class="col-md-4 follow-us">
+						<h3>Suivez-nous : <a class="twitter" href="#"></a><a class="facebook" href="#"></a></h3>
+					</div>
+					<div class="col-md-4 shipping-grid">
+						<div class="shipping">
+							<img src="{{=URL('static','images/shipping.png')}}" alt="" />
+						</div>
+						<div class="shipping-text">
+							<h3>{{=T("Livraison")}}</h3>
+							<p>sous 24h</p>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="col-md-4 online-order">
+						<p>Contact par Tél</p>
+						<h3>06 65 77 13 40</h3>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+
+				<!-- <div class="products-grid">
+				<header>
+					<h3 class="head text-center">Dernier Produits</h3>
+				</header>
+
+				{{for caftan in caftans:}}
+
+				<div class="col-md-4 product simpleCart_shelfItem text-center">
+									<img src="{{=URL('download',args=caftan.photo1)}}" />
+										<div class="mask">
+											{{=A('Quick View', _href=URL('vue', args=caftan.url))}}
+										</div>
+										<a class="product_name" href="single.html">{{=caftan.nom}}</a>
+										<p><a class="item_add" href="#"><i></i> <span class="item_price">${{=caftan.prix_total}}</span></a></p>
+									</div>
+
+									{{pass}}
+									<div class="clearfix"></div>
+				</div> -->
+			</div>
+
+		</div>
+
+<style type="text/css">
+
+.banner {
+
+	-webkit-background-size: 100% auto;
+	min-height: 115px;
+
+}
+
+
+</style>
+
+
+
+
+{{include 'produit.html'}}
+{{include 'foot.html'}}
+
+
+
+
+
+
+
+
+
+
+
+{{end}}

@@ -1,0 +1,157 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<title>Votre caftan pas chère</title>
+<link href="{{=URL('static', 'css/bootstrap.css')}}" rel='stylesheet' type='text/css' />
+<link href="{{=URL('static', 'css/component.css')}}" rel='stylesheet' type='text/css' />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="{{=URL('static', 'js/jquery.min.js')}}"></script>
+
+<!-- Custom Theme files -->
+<link href="{{=URL('static', 'css/style.css')}}" rel="stylesheet" type="text/css" media="all" />
+<!-- Custom Theme files -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Eshop Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--webfont-->
+<!-- for bootstrap working -->
+	<script type="text/javascript" src="{{=URL('static','js/bootstrap-3.1.1.min.js')}}"></script>
+<!-- //for bootstrap working -->
+<!-- cart -->
+
+<!-- cart -->
+<link rel="stylesheet" href="{{=URL('static', 'css/flexslider.css')}}" type="text/css" media="screen" />
+</head>
+<body onload="brython(1)">
+	<!-- header-section-starts -->
+	<div class="header">
+		<div class="header-top-strip">
+			<div class="container">
+				<div class="header-top-left">
+        {{user = User(a0 or me)}}
+					{{if user: }}
+					{{a=T('Votre espace client')}}
+					<ul>
+						<li><a href="{{=(URL('default', 'profile'))}}"><span class="glyphicon glyphicon-user"> </span>Profil</a></li>
+						<li><a href="{{=(URL('default', 'utilisateur'))}}"><span class="glyphicon glyphicon-lock"> </span>{{=a}}</a></li>
+					</ul>
+           {{else:}}
+					<ul>
+						<li><a href="{{=(URL('default', 'login'))}}"><span class="glyphicon glyphicon-user"> </span>Login</a></li>
+						<li><a href="{{=(URL('default', 'enregistrement'))}}"><span class="glyphicon glyphicon-lock"> </span>{{=T('Créer un compte')}}</a></li>
+					</ul>
+					{{pass}}
+				</div>
+				<div class="header-right">
+						<div class="cart box_1">
+							 <a id="panier" href="{{=(URL('default', 'panier'))}}">
+                <h3> <span id="simplecart" class="simpleCart_total"> €0.00 </span> (<span id="simpleCart_quantity" class="simpleCart_quantity"> 0 </span>)<img src="{{=URL('static', 'images/bag.png')}}" alt=""></h3>
+              </a>
+              <p><a id="effacever"  name="efface" onclick="ajax('{{=URL('default', 'nettoyage')}}', ['efface'])"   href="javascript:;" class="simpleCart_empty">{{=T('Videz le panier')}}</a></p>
+              <div class="clearfix"> </div>
+            </div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+	<!-- header-section-ends -->
+  <div class="banner-top">
+  <div class="container">
+      <nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      <div class="logo">
+        <h1><a href="{{=(URL('default', 'acceuil'))}}"><span>P</span> -Erla</a></h1>
+      </div>
+    </div>
+    <!--/.navbar-header-->
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+    <li><a href="{{=(URL('default', 'acceuil'))}}">{{=T('Acceuil')}}</a></li>
+          <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{=T('Caftan')}}<b class="caret"></b></a>
+              <ul class="dropdown-menu multi-column columns-2">
+                <div class="row">
+                  <div class="col-sm-4">
+                    <ul class="multi-column-dropdown">
+                <h6>{{=T("COLLECTION CAFTANS")}}</h6>
+                      <li><a href="{{=(URL('default', 'caftan_en_location'))}}">{{=T("Caftan en location")}}</a></li>
+                      <li><a href="{{=(URL('default', 'caftan_en_vente'))}}">{{=T("Caftan en vente")}}</a></li>
+                      <!--<li><a href="{{=(URL('default', 'robe_de_soiree_en_location'))}}">{{=T("Robe de soirée en location")}}</a></li>
+                      <li><a href="{{=(URL('default', 'robe_de_soiree_en_vente'))}}">{{=T("Robe de soirée en vente")}}</a></li> -->
+                    </ul>
+                  </div>
+            <div class="clearfix"></div>
+                </div>
+              </ul>
+          </li>
+          <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{=T("Robe de soirée")}} <b class="caret"></b></a>
+              <ul class="dropdown-menu multi-column columns-2">
+                <div class="row">
+                  <div class="col-sm-4">
+                    <ul class="multi-column-dropdown">
+                <h6>{{=T("COLLECTION ROBES DE SOIRÉE")}}</h6>
+                      <li><a href="{{=(URL('default', 'robe_de_soiree_en_location'))}}">{{=T("Robe de soirée en location")}}</a></li>
+                      <li><a href="{{=(URL('default', 'robe_de_soiree_en_vente'))}}">{{=T("Robe de soirée en vente")}}</a></li>
+                    </ul>
+                  </div>
+            <div class="clearfix"></div>
+                </div>
+              </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{=T("Grande Taille")}}<b class="caret"></b></a>
+              <ul class="dropdown-menu multi-column columns-2">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <ul class="multi-column-dropdown">
+                <h6>{{=T("Caftan Grande Taille ")}}</h6>
+                      <li><a href="{{=(URL('default', 'djelleba'))}}">{{=T("Caftan en location")}}</a></li>
+                      <li><a href="{{=(URL('default', 'Guandoura'))}}">{{=T("Caftan en vente")}}</a></li>
+                    </ul>
+                  </div>
+            <div class="clearfix"></div>
+                </div>
+              </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{=T("accessoires")}}<b class="caret"></b></a>
+              <ul class="dropdown-menu multi-column columns-2">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <ul class="multi-column-dropdown">
+                <h6>{{=T("ACCESSOIRES")}}</h6>
+                <li><a href="{{=(URL('default', 'bijoux'))}}">{{=T("Bijoux")}}</a></li>
+                    </ul>
+                  </div>
+            <div class="clearfix"></div>
+                </div>
+              </ul>
+          </li>
+        <li><a href="contact.html">{{=T("contact")}}</a></li>
+        </ul>
+    </div>
+    <!--/.navbar-collapse-->
+</nav>
+<!--/.navbar-->
+</div>
+</div>
+
+{{block contain}}
+{{end}}

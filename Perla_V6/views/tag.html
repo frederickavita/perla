@@ -1,0 +1,19 @@
+{{tags=db().select(db.produit.ALL, orderby=db.produit.nom, limitby=(0, 8))}}
+
+
+
+<div class="tags">
+				    	<h4 class="tag_head">Tags Widget</h4>
+				         <ul class="tags_links">
+                  {{for tag in tags:}}
+              <li><a href="#">{{=tag.tag}}</a></li>
+							<li><a href="#">{{=tag.tag1}}</a></li>
+              <li><a href="#">{{=tag.tag2}}</a></li>
+              <li><a href="#">{{=tag.tag3}}</a></li>
+
+                  {{pass}}
+						</ul>
+
+
+				     </div>
+           </div>

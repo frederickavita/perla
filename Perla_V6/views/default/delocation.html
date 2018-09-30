@@ -1,0 +1,111 @@
+{{extend 'acceuil.html'}}
+{{block contain}}
+<!-- content-section-starts -->
+<div class="content">
+<div class="container">
+  <div class="login-page">
+        <div class="dreamcrub">
+         <ul class="breadcrumbs">
+                  <li class="home">
+                     <a href="acceuil.html" title="Go to Home Page">{{=T("Acceuil")}}</a>&nbsp;
+                     <span>&gt;</span>
+                  </li>
+                  <li class="women">
+                     Login
+                  </li>
+              </ul>
+              <ul class="previous">
+                <li><a href="acceuil.html">{{=T("Page précédente")}}</a></li>
+              </ul>
+              <div class="clearfix"></div>
+       </div>
+       <div class="account_grid">
+			   <div class="col-md-6 login-left wow fadeInLeft" data-wow-delay="0.4s">
+			  	 
+         <h1 Style="font-family: Cambria,Georgia,Geneva,serif; text-align:center;">{{=T("Conditions générales de location PerlaMode")}}</h1>
+         <br>
+         <br>
+         <h2>{{=T("Objet")}}</h2>          
+         <p Style="color: #929292; text-align:justify;">{{=T("PerlaMode met à la disposition de ses Clients un ensemble de caftans, takchitas, de robes de soirée et d’accessoires en location. Ces conditions générales de location ont pour objet de définir les modalités suivant lesquelles PerlaMode fournira à ses clients, qui l'acceptent, un ensemble de services liée à la location des caftans, des takchitas, des robes de soirées, des accessoires, ...")}}</p>
+
+
+         <h2>{{=T("Durée de la location")}}</h2>          
+         <p Style="color: #929292; text-align:justify;">{{=T("Les locations se font du jeudi ( à partir de 16h) au dimanche ou du vendredi ( à partir de 16h) au lundi ( à 16h) selon vos préférences. En fonction de la date de votre événement cette plage peut être aménagée. En revanche nous resterons sur une base de 4 jours pour la durée totale de location. Au-delà de 4 jours, une facturation supplémentaire vous sera demandée. ")}}</p>
+
+         <h2>{{=T("Conditions financières")}}</h2>          
+         <p Style="color: #929292; text-align:justify;">{{=T("La réservation lors d’un rendez-vous de la ou des produits ( Caftans, Takchita, Robes de soirées, …)  se fait à PerlaMode : 8 rue Charles Gide 77130 Varennes sur Seine, mais aussi par téléphone , par mail via le formulaire de contact, ou via notre compte facebook. Pour  toutes réservations, un acompte de 50% du prix de la location est demandé, aucune réservation ne peut être comptabilisée sans le versement de cet acompte. Le solde sera réglé le jour où le client viendra récupérer ses produits. Le règlement peut être effectuer par carte bancaire, par chèque bancaire, via Delipay, par mandats ou en espèces.")}}</p>
+
+         <p Style="color: #929292; text-align:justify;">{{=T("En cas de retard de restitution des produits, le locataire accepte de payer au prestataire une pénalité de retard de 25% du prix total de la location par jour de retard.")}}</p>
+
+         <h2>{{=T("Caution")}}</h2>          
+         <p Style="color: #929292; text-align:justify;">{{=T("Pour toute location une caution doit obligatoirement être versée. Celle-ci n’est pas encaissée, c’est une garantie de restitution. Elle peut être versée par chèque ou en espèces. Son montant est déterminé en fonction du modèle choisi ainsi que du nombre de robes louées. Elle devra être accompagnée d’une photocopie de votre pièce d’identité. Après vérification des robes, si aucune détérioration ou altération n’est constatées nous vous restituons votre caution.")}}</p>
+
+
+         <h2>{{=T("Responsabilités des parties")}}</h2>          
+         <p Style="color: #929292; text-align:justify;">{{=T("Le paiement d'une location donne droit à l'acheteur de pouvoir faire  un usage normal de l'objet prêté. L'objet doit être rendu dans le même état qu'il a été remis; une description de l'état de la robe est réalisé avant la location par les 2 parties et sa signature entraîne l'approbation des 2 parties.")}}</p>
+
+         <p Style="color: #929292; text-align:justify;">{{=T("Le chèque de caution est restitué lorsque le client rend la robe dans le même état dans lequel il a été loué. Si la tenue est dans un autre état, la chèque de caution peux être encaissé entièrement ou partiellement. PerlaMode réserve le droit d'encaissé entièrement ou partiellement le chèque de caution.")}}</p>
+
+          <p Style="color: #929292; text-align:justify;">{{=T("Exemples de cas où le chèque de caution est encaissé totalement::")}}
+          <ul Style="color: #929292; text-align:justify;">
+          <li> {{=T("déchirure rendant la tenue plus louable,")}}</li>
+          <li> {{=T("tâche indélébile rendant la tenue plus louable,")}}</li>
+          <li> {{=T("tenue non rendu,")}}</li>
+          </ul>
+          </p>
+
+          <p Style="color: #929292; text-align:justify;">{{=T("Exemples de cas où le chèque de caution est encaissé partiellement:")}}
+          <ul Style="color: #929292; text-align:justify;">
+          <li> {{=T(" la robe est rendu avec des tâches proéminentes: le prix du pressing est alors déduit.")}}</li>
+          <li> {{=T("jours de retard")}}</li>
+          <li> {{=T("housse non rendu")}}</li>
+          </ul>
+          </p>
+
+          <p Style="color: #929292; text-align:justify;">{{=T("Il ne s'agit là que d'exemples. Dans certains autres cas, non énumérés ci-dessus et laissés à l'appréciation de PerlaMode.")}}
+
+          <p Style="color: #929292; text-align:justify;">{{=T("La photocopie d'une pièce d'identité du titulaire du chèque de caution est demandée.")}}
+
+
+         <h2>{{=T("Pressing")}}</h2>          
+         <p Style="color: #929292; text-align:justify;">{{=T("Les articles sont entièrement entretenus par PerlaMode. Le pressing est à notre charge ; les frais de nettoyage sont compris dans le prix de la location.")}}</p>
+
+         <h2>{{=T("Résiliation - Annulation")}}</h2>          
+         <p Style="color: #929292; text-align:justify;">{{=T("En cas de modification ou d'annulation de la location du fait du client, PerlaMode, se réserve le droit de garder l'acompte versé sauf en cas de force majeure conduisant le client à annuler la location.")}}</p>
+
+         <p Style="color: #929292; text-align:justify;">{{=T("En cas de modification ou d'annulation de la location du fait du prestataire, le montant de l'acompte sera alors restitué au client, sans qu'aucune poursuite judiciaire ne puisse être engagée à son encontre. ")}}</p>
+
+
+         <h2>{{=T("Location à distance")}}</h2>          
+         <p Style="color: #929292; text-align:justify;">{{=T("PerlaMode loue partout en France. Le contrat de location est envoyé par mail: il doit être imprimer puis retourner avec le règlement ou l'acompte de réservation ainsi que la caution et une copie de la pièce d'identité.")}}</p>
+
+         <p Style="color: #929292; text-align:justify;">{{=T("Les articles ( Caftans, Takchita, Robes de soirées, …)sont envoyés par colis. L’article  est bloquée pour la date à réception et encaissement du paiement ( si paiement par chèque).")}}</p>
+
+         <p Style="color: #929292; text-align:justify;">{{=T("La ou les robes seront expédier pour être reçue le jeudi et doivent impérativement être retourner le lundi suivant l'événement.")}}</p>
+
+         <p Style="color: #929292; text-align:justify;">{{=T("En cas d'annulation, il est obligatoire de nous prévenir 15 jours à l'avance.")}}</p>
+
+         <p Style="color: #929292; text-align:justify;">{{=T("L'acompte de réservation n'est pas remboursable sauf en cas de force majeure conduisant le client à annuler la location.")}}</p>
+
+
+
+
+				 <a class="acount-btn" href="enregistrement.html">{{=T("Créer un compte")}}</a>
+			   </div>
+			   
+			   <div class="clearfix"> </div>
+			 </div>
+		   </div>
+</div>
+
+
+{{include 'foot.html'}}
+
+
+<style media="screen">
+  .error{
+    color:red;
+
+  }
+</style>
+{{end}}

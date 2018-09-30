@@ -1,0 +1,324 @@
+{{extend 'acceuil.html'}}
+{{block contain}}
+<script src="{{=URL('static', 'js/brython.js')}}"> </script>
+<script src="{{=URL('static', 'js/brython_stdlib.js')}}"> </script>
+
+
+
+
+
+
+
+
+<div class="cart-items">
+	<div class="container">
+	<div class="dreamcrub">
+			   	 <ul class="breadcrumbs">
+                    <li class="home">
+                       <a href="{{=(URL('default', 'acceuil'))}}" title="Go to Home Page">{{=T("Acceuil")}}</a>&nbsp;
+                       <span>&gt;</span>
+                    </li>
+                    <li class="women">
+												{{if vide == False:}}
+												{{=T("Panier")}}
+												{{else:}}
+                       {{=T("Panier vide")}}
+											 {{pass}}
+                    </li>
+                </ul>
+                <ul class="previous">
+                	<li><a href="{{=(URL('default', 'acceuil'))}}">{{=T("Page précédente")}}</a></li>
+                </ul>
+                <div class="clearfix"></div>
+			   </div>
+         <div class="clearfix"></div>
+        </div>
+      <h2>{{=T("MON PANIER")}}</h2>
+
+   
+ {{for i, cle in enumerate(produits):}} 
+
+{{dc = ".close"}}
+{{rt = str(i)}}
+{{rt = str(rt)}}
+{{close = dc + rt}}
+
+
+{{print close}}
+
+
+
+
+
+
+
+{{header = ".cart-header"}}
+{{headert = str(i)}}
+{{head= header +  headert}}
+
+
+{{headingl = "cart-header"}}
+{{headingert = str(i)}}
+{{heading = headingl +  headingert}}
+
+
+
+
+{{cd = "close"}}
+{{tr = str(i)}}
+{{tr = str(tr)}}
+{{closing = cd + tr}}
+
+
+
+
+
+
+     <script>$(document).ready(function(c) {
+					$('{{=close}}').on('click', function(c){
+						$('{{=head}}').fadeOut('slow', function(c){
+							$('{{=head}}').remove();
+						});
+						});
+					});
+			   </script>
+
+
+
+
+               <div id="{{=cle.id}}" class="{{=heading}}" style="display: none">
+				<div id="clo{{=cle.id}}"  class="{{=closing}}"></div>
+				<div class="cart-sec simpleCart_shelfItem">
+				<div class="cart-item cyc">
+			     <img src="{{=URL('download',args=cle.photo2)}}" class="img-responsive" alt="">
+				 </div>
+					   <div class="cart-item-info">
+						<h3><a href="#">{{=cle.nom}}</a><span>Pickup time:</span></h3>
+						<ul class="qty">
+							<li><p>Min. order value:</p></li>
+							<li><p>FREE delivery</p></li>
+						</ul>
+							 <div class="delivery">
+							 <p style="display: none" value="{{=cle.prix_total}}" id="tot{{=cle.id}}">{{=cle.prix_total}}</p>
+							 <p>Prix : €{{=cle.prix_total}}</p>
+							 <span id="ber{{=cle.id}}">{{=T('Quantité')}}: </span>
+					
+					
+
+							 <div class="clearfix"></div>
+				        </div>
+					   </div>
+					   <div class="clearfix"></div>
+
+				  </div>
+			 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      {{pass}}
+
+
+      <div class="bs-example">
+				 <table class="table">
+				  <tbody>
+					<tr>
+					  <td><h1 id="first">Sous Total<a class="anchorjs-link" href="#h1.-bootstrap-heading"><span class="anchorjs-icon"></span></a></h1></td>
+					   <td id="horstaxe" class="type-info"></td>
+					   <td id="tva" class="type-info"></td>
+					   <td id="quantite" class="type-info"></td> 
+					    <td id="frais" class="type-info"></td>
+					     <td id="livre" class="type-info"></td>
+					   	<td id="Total" class="type-info"></td
+					</tr>
+					</tbody>
+					</table>
+				
+				
+					<div id='bouton' class="text-center" style="display: none;">
+				<input id="valid" class="btn btn-primary btn-lg" type="submit" value="Valider mon panier">
+				</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/python">
+from browser import document, timer, window
+import json
+
+
+
+
+
+
+def storage():
+	if "cart" in window.localStorage:
+	    parsed = json.loads(window.localStorage.cart)
+	    document.getElementById('bouton').style.display = 'block'
+	    for clef in parsed :
+	    	document.getElementById(clef).style.display = 'block'
+
+	    
+	    
+storage()	    
+
+
+
+def quantite():
+    a = 'ber'
+    if "cart" in window.localStorage:
+        parsed = json.loads(window.localStorage.cart)
+	print(parsed)
+	for clef, valeur in parsed.items():
+	    document.getElementById(a + clef).innerHTML = valeur
+	        
+quantite()
+
+
+
+def total():
+    chiffre = {}
+    sum = 0
+    c = 'tot'
+    if "cart" in window.localStorage:
+        parsed = json.loads(window.localStorage.cart)
+    	for clef, valeur in parsed.items():
+            tr = document.getElementById(c + clef ).innerHTML
+            ref = int(valeur)
+            r = float(tr)
+            r = r * int(valeur)
+            print(r)
+            ref += ref
+            sum += r
+            print(sum)
+            montanttva = sum * 1.20 / 100
+            montanthtx = sum - montanttva
+            quantite = ref 
+            livraison = quantite * 8
+
+
+	document.getElementById('Total').innerHTML  = sum  + livraison 
+	document.getElementById('Total').value  = sum  + livraison 
+	document.getElementById('tva').innerHTML  =  montanttva
+	document.getElementById('tva').value  =  montanttva
+	document.getElementById('horstaxe').innerHTML  = montanthtx
+	document.getElementById('horstaxe').value  =  montanthtx
+	document.getElementById('quantite').innerHTML  = ref
+	document.getElementById('quantite').value  = ref
+	document.getElementById('frais').innerHTML  = 8
+	document.getElementById('frais').value  = 8
+	document.getElementById('livre').innerHTML  = livraison
+	document.getElementById('livre').value  = livraison
+	document.getElementById('simplecart').innerHTML = ' €{0}'.format(sum)
+	chiffre['total'] = sum  + livraison 
+	chiffre['tva'] =  montanttva
+	chiffre['quantite'] = ref
+	chiffre['montanthtx'] = montanthtx
+	chiffre['livraison'] = quantite * 8
+	window.localStorage.setItem("chiffre", window.JSON.stringify(chiffre))
+
+
+
+
+
+
+
+total()	
+
+
+
+
+
+
+
+def remove(ev):
+    if "cart" in window.localStorage: 
+		parsed = json.loads(window.localStorage.cart)
+		id = ev.target.id
+		print(type(id))
+		rt = id.find('clo')
+		print(rt)
+		if rt == 0:
+		    try:
+		       id = str(id[3:])
+		       del parsed[id]
+		       window.localStorage.setItem("cart", window.JSON.stringify(parsed))   
+		       window.location.reload()
+		    except:
+		    	print("kooo")   
+
+
+
+bns = window.jQuery("div")
+bns.on("click", remove )  
+
+
+
+def panier(ev):
+	if "cart" in window.localStorage : 
+		parsed = json.loads(window.localStorage.cart)
+		chiffre = json.loads(window.localStorage.chiffre)
+	window.jQuery.ajax({'url':"{{=URL('echo')}}", 'type': 'POST', 'context': 'document.body', 'data': {"cart": window.JSON.stringify(parsed)},"dataType": "json",'success': print('ok')})
+	window.jQuery.ajax({'url':"{{=URL('russe')}}", 'type': 'POST', 'context': 'document.body', 'data': {"chiffre": window.JSON.stringify(chiffre)},"dataType": "json",'success': print('ok')})
+	window.location.href = "/test/default/commande"
+
+
+document.getElementById('valid').addEventListener('click', panier)  
+
+
+</script>
+
+
+
+
+<style>
+
+#first{
+
+padding-bottom: 15px;
+    font-size: 30px;
+    letter-spacing: 1px;
+    color: #3382C9;
+
+}
+
+#Total {
+   
+padding-bottom: 15px;
+    font-size: 30px;
+    letter-spacing: 1px;
+    color: green;
+
+}
+	
+</style>
+
+
+
+
+
+{{end}}
+
+

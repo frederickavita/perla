@@ -1,0 +1,151 @@
+{{extend 'acceuil.html'}}
+
+
+
+{{block  contain}}
+<script src="{{=URL('static', 'js/brython.js')}}"> </script>
+<script src="{{=URL('static', 'js/brython_stdlib.js')}}"> </script>
+<h2 class="heading text-center">{{=auth.user.first_name}}, finalisez et payez votre commande en 1 clic :</h2>
+
+<div id="cache" style="display: none">
+{{=form2}}
+</div>
+
+<h3>Lieu de livraision</h3>
+<button id="modifier" class="btn btn-primary">Modifier l'adressse</button>
+
+
+{{if  livraison:}}
+
+
+{{for x in livraison:}}
+
+
+
+
+<ul>        <li class="list-group-item1">{{=auth.user.last_name}} {{=auth.user.first_name}}</li>
+			<li class="list-group-item1">{{=x.adresse}}</li>
+			<li class="list-group-item1">{{=x.code_postal}}</li>
+			<li class="list-group-item1">{{=x.ville}}</li>
+		</ul>
+
+
+{{pass}}
+
+{{else:}}
+
+
+
+
+<ol class="breadcrumb">
+<li class="active">enregistrez votre lieu de livraison</li>
+</ol>
+
+
+{{=form}}
+
+{{pass}}
+
+
+<h3>Facturation</h3>
+
+
+{{if  livraison:}}
+
+
+
+
+<ul>        <li class="list-group-item1">{{=auth.user.last_name}} {{=auth.user.first_name}}</li>
+			<li class="list-group-item1">{{=x.adresse}}</li>
+			<li class="list-group-item1">{{=x.code_postal}}</li>
+			<li class="list-group-item1">{{=x.ville}}</li>
+		</ul>
+
+
+
+	
+					<div id='bouton' class="text-center">
+				<input id="valid" class="btn btn-primary btn-lg" type="submit" value="Valider l'adresse de livraison">
+				</div>
+
+
+{{else:}}
+
+
+
+
+<ol class="breadcrumb">
+<li class="active">enregistrez votre lieu de facturation</li>
+</ol>
+
+
+
+
+{{pass}}
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+<script type="text/python">
+from browser import document, window
+
+def test(ev):
+	if document.getElementById('cache').style.display == 'none':
+	     document.getElementById('cache').style.display = "block"
+	elif  document.getElementById('cache').style.display == "block" :
+         document.getElementById('cache').style.display = 'none'
+
+
+
+
+
+
+document.getElementById('modifier').addEventListener('click', test)
+
+
+
+
+def suivant(ev):
+	window.location.href = "/test/default/paiement"
+
+
+
+
+
+document.getElementById('valid').addEventListener('click', suivant)
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{end}}

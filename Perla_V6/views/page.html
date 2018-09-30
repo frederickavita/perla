@@ -1,0 +1,63 @@
+{{if chiffre == 9:}}
+<div class="pages">
+  <div class="limiter visible-desktop">
+      <label>Show</label>
+         <select>
+        <option value="" selected="selected">
+           9                </option>
+         </select> {{=T("Par page")}}
+      </div>
+  </div>
+
+
+
+{{elif chiffre == 15:}}
+<div class="pages">
+    <div class="limiter visible-desktop">
+        <label>Show</label>
+           <select>
+                     <option value="" selected="selected">
+             9                </option>
+                     <option value="">
+             15                </option>
+           </select> {{=T("Par page")}}
+        </div>
+    </div>
+
+
+{{elif chiffre == 30:}}
+
+<div class="pages">
+  <div class="limiter visible-desktop">
+      <label>Show</label>
+         <select>
+                   <option value="" selected="selected">
+           9                </option>
+                   <option value="">
+           15                </option>
+                   <option value="">
+           30                </option>
+         </select> {{=T("Par page")}}
+      </div>
+  </div>
+
+
+
+
+  {{else:}}
+
+  <div class="pages">
+    <div class="limiter visible-desktop">
+        <label>Show</label>
+           <select disabled>
+                     <option value="" selected="selected">
+             9                </option>
+                     <option value="">
+             15                </option>
+                     <option value="">
+             30                </option>
+           </select> {{=T("Par page")}}
+        </div>
+    </div>
+
+    {{pass}}

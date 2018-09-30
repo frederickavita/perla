@@ -1,0 +1,465 @@
+{{extend 'acceuil.html'}}
+{{block  contain}}
+<script src="{{=URL('static', 'js/brython.js')}}"> </script>
+<script src="{{=URL('static', 'js/brython_stdlib.js')}}"> </script>
+
+
+
+<h3>Mode de paiement</h3>
+
+
+
+
+
+
+<h4>Livraison</h4>
+{{for x in livraison:}}
+
+
+<ul>        <li class="list-group-item1">{{=auth.user.last_name}} {{=auth.user.first_name}}</li>
+			<li class="list-group-item1">{{=x.adresse}}</li>
+			<li class="list-group-item1">{{=x.code_postal}}</li>
+			<li class="list-group-item1">{{=x.ville}}</li>
+		</ul>
+
+
+
+
+{{pass}}
+
+
+
+<h4>Facturation</h4>
+{{for x in livraison:}}
+
+
+<ul>        <li class="list-group-item1">{{=auth.user.last_name}} {{=auth.user.first_name}}</li>
+			<li class="list-group-item1">{{=x.adresse}}</li>
+			<li class="list-group-item1">{{=x.code_postal}}</li>
+			<li class="list-group-item1">{{=x.ville}}</li>
+		</ul>
+
+
+
+
+{{pass}}
+
+
+
+   
+
+
+
+<table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Produit</th>
+                  <th>Type</th>
+                   <th>Quantite</th>
+                   <th>Prix U TTC </th>
+                   <th>image</th>
+                </tr>
+              </thead>
+              <tbody>
+              {{for clef, valeur in produit.items():}}
+
+  {{produits, qty= db(db.produit.id == clef).select(), [valeur]}} 
+
+  {{for q, x in zip(qty, produits):}}
+
+                <tr>
+                  <td>{{=x.nom}}</td>
+                  <td>{{=x.types[0:6]}}</td>
+                   <td>{{=q}}</td>
+                   <td>{{=x.prix_total}}</td>
+                     <td><img width="50px"  src="{{=URL('download', args=x.photo1)}}" </td>
+                   {{pass}}
+{{pass}}
+
+                    <td>prix total hors taxe</td>
+                       <td>{{=montantthtx}}</td>
+                        <td>TVA à 20%</td>
+                       <td>{{=tva}}</td>
+                       <td>Frais de livraison unitaire</td>
+                       <td>8 euros </td>
+                       <td>Quantite</td>
+                       <td>{{=quantite}}</td>
+                       <td>Frais Total</td>
+                       <td>{{=ret}}</td>
+                       <td>Net à payer</td>
+                       <td>{{=total}}</td>
+
+                    
+                    
+                </tr>
+
+                
+              </tbody>
+            </table>
+
+
+
+
+<h4>En cliquant sur un mode paiement, je certifie avoir lu et j'approuve les Conditions générales de ventes</h4>
+
+<!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+<button id="bleu" type="button" class="btn btn-primary">Carte bleue</button>
+
+<!-- Secondary, outline button -->
+<button id="vire" type="button" class="btn btn-secondary">Virement</button>
+
+<!-- Indicates a successful or positive action -->
+<button id="deli" type="button" class="btn btn-success">Delipay</button>
+
+<!-- Contextual button for informational alert messages -->
+<button id="cheq" type="button" class="btn btn-info">Chèque</button>
+
+
+<div id="cheque" style="display: none">
+
+<p> Pour le paiement par chèque, après la validation de votre commande, veuillez noter le numéro de commande qui vous sera communiqué au dos de votre chèque, établi à l'ordre de Original dog et l'envoyer à l'adresse suivante :
+
+SARL ORIGINAL DOG
+12 D CHEMIN DES LATS
+Z.A DES LATS
+69510 MESSIMY 
+
+Votre commande par chèque bancaire ne sera prise en compte qu'à réception de votre règlement.</p>
+	
+</div>
+
+
+<div id="virement" style="display: none">
+
+<p>Pour le paiement par virement, n'oubliez pas d'indiquer votre numéro de commande dans le champ "Commentaire" de l'opération bancaire.
+Attention, l'omission de cette information entraînera un retard de traitement de votre commande.
+Voici nos coordonnées pour le virement :
+
+Domiciliation : CCM LYON SAXE PREFECTURE
+Numéro de compte : 10278-07329-00055082209-82
+Titulaire du compte : SARL ORIGINAL DOG NOURRIR COMME LA NATURE
+Numéro IBAN : FR76 1027 8073 2900 0550 8220 982
+Numéro BIC : CMCIFR2A
+
+Votre commande par virement ne sera prise en compte qu'après confirmation de votre règlement.</p>
+	
+</div>
+
+
+<div id='delipay' style="display: none">
+
+
+jklkjlk
+
+
+	
+</div>
+
+
+<br><br><br><br>
+<div id='carte' style="display: none">
+
+
+<p> EURL I-TECHNOLOGIE (0291558)</p>
+<P>Référence	152016</P>
+ <P>Montant	{{=total}} EUR</P>
+
+
+ <p class="text-center">Montant de la transaction : {{=total}} EUR</p>
+
+
+
+
+
+
+<script type="text/javascript">
+ jQuery(function(){
+    // This identifies your website in the createToken call below
+    Stripe.setPublishableKey('{{=pk}}');
+    var stripeResponseHandler = function(status, response) {
+      var jQueryform = jQuery('#payment-form');
+      if (response.error) {
+        // Show the errors on the form
+        jQuery('.payment-errors').text(response.error.message).show();
+        jQueryform.find('button').prop('disabled', false);
+      } else {
+        // token contains id, last4, and card type
+        var token = response.id;
+        // Insert the token into the form so it gets submitted to the server
+        var tokenInput = jQuery('<input type="hidden" name="stripeToken" />');
+        jQueryform.append(tokenInput.val(token));
+        // and re-submit
+        jQueryform.get(0).submit();
+      }
+    };
+    jQuery(function(jQuery) {
+      jQuery('#payment-form').submit(function(e) {
+        var jQueryform = jQuery(this);
+        // Disable the submit button to prevent repeated clicks
+        jQueryform.find('button').prop('disabled', true);
+        Stripe.createToken(jQueryform, stripeResponseHandler);
+        // Prevent the form from submitting with the default action
+        return false;
+      });
+    });
+});
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<form action="" method="POST" id="payment-form" class="form-horizontal">
+  <div class="form-row form-group">
+    <label class="col-sm-2 control-label">Numéro de carte</label>
+    <div class="controls col-sm-10">
+      <input id="number" type="tel" size="20" data-stripe="number"
+             placeholder="4242424242424242" class="form-control"/>
+    </div>
+  </div>
+  <div class="form-row form-group">
+    <label class="col-sm-2 control-label">CVC</label>
+    <div class="controls col-sm-10">
+      <input id="cvc" type="tel" size="4" style="width:100px" data-stripe="cvc"
+             placeholder="XXX" class="form-control"/>
+      <a href="http://en.wikipedia.org/wiki/Card_Verification_Code" target="_blank">What is this?</a>
+    </div>
+  </div>
+  <div class="form-row form-group">
+    <label class="col-sm-2 control-label">Expiration</label>
+    <div class="controls col-sm-10">
+      <input type="text" id="mm" size="2" style="width:80px; display:inline-block"
+             data-stripe="exp-month" placeholder="MM" class="form-control"/>
+      <input type="text" id="yyyy" size="4" style="width:80px; display:inline-block"
+             data-stripe="exp-year" placeholder="YYYY" class="form-control"/>
+    </div>
+  </div>
+  <div class="form-row form-group">
+    <div class="controls col-sm-offset-2 col-sm-10">
+      <button id="validation" type="submit" class="btn btn-md  btn-primary">Submit Payment</button>
+      <div class="payment-errors error hidden"></div>
+    </div>
+  </div>
+  <input type="hidden" name="signature" value="{{=signature}}" />
+</form>
+{{if security_notice or disclosure_notice:}}
+<div class="well">
+  {{if security_notice:}}
+  <h3>Security Notice</h3>
+  <p>For your security we process all payments using a service called <a href="http://stripe.com">Stripe</a>. Thanks to <a href="http://stripe.com">Stripe</a> your credit card information is communicated directly between your Web Browser and the payment processor, <a href="http://stripe.com">Stripe</a>, without going through our server. Since we never see your card information nobody can steal it through us. Stripe is <a href="https://stripe.com/us/help/faq#security-and-pci">PCI compliant</a> and so are we.</p>
+  {{pass}}
+  {{if disclosure_notice:}}
+  <h3>Disclosure Notice</h3>
+  <p>We do store other information about your purchase including your name, a description of the purchase, the time when it was processed, and the amount paid. This information is necessary to provide our services and for accounting purposes. We do not disclose this information to third parties unless required to operate our services or accounting purposes.</p>
+  {{pass}}
+</div>
+{{pass}}
+
+	
+</div>
+
+
+
+
+
+<script type=text/python>
+
+from browser import document, window
+
+window.jQuery('#validation').prop('disabled', True)
+
+def cartes(ev):
+	carte = document.getElementById('carte')
+	virement = document.getElementById('virement')
+	cheque = document.getElementById('cheque')
+	delipay = document.getElementById('delipay')
+	if carte.style.display == 'none':
+		carte.style.display = 'block'
+		virement.style.display = 'none'
+		cheque.style.display = 'none'
+		delipay.style.display = 'none'
+	else:
+		carte.style.display = 'none'
+
+
+
+
+document.getElementById('bleu').addEventListener('click', cartes)
+
+
+def virement(ev):
+	carte = document.getElementById('carte')
+	virement = document.getElementById('virement')
+	cheque = document.getElementById('cheque')
+	delipay = document.getElementById('delipay')
+	if virement.style.display == 'none':
+		virement.style.display = 'block'
+		carte.style.display = 'none'
+		cheque.style.display = 'none'
+		delipay.style.display = 'none'
+	else:
+		virement.style.display = 'none'
+
+
+
+
+document.getElementById('vire').addEventListener('click', virement)
+
+
+
+
+def deli(ev):
+	carte = document.getElementById('carte')
+	virement = document.getElementById('virement')
+	cheque = document.getElementById('cheque')
+	delipay = document.getElementById('delipay')
+	if delipay.style.display == 'none':
+		virement.style.display = 'none'
+		carte.style.display = 'none'
+		cheque.style.display = 'none'
+		delipay.style.display = 'block'
+	else:
+		delipay.style.display = 'none'
+
+
+
+
+document.getElementById('deli').addEventListener('click', deli)
+
+
+
+
+
+
+def cheq(ev):
+	carte = document.getElementById('carte')
+	virement = document.getElementById('virement')
+	cheque = document.getElementById('cheque')
+	delipay = document.getElementById('delipay')
+	if cheque.style.display == 'none':
+		virement.style.display = 'none'
+		carte.style.display = 'none'
+		cheque.style.display = 'block'
+		delipay.style.display = 'none'
+	else:
+		cheque.style.display = 'none'
+
+
+
+
+document.getElementById('cheq').addEventListener('click', cheq)
+
+
+
+
+
+
+
+
+
+
+def carte(ev):
+    number = document.getElementById('number').value
+    cvc = document.getElementById('cvc').value
+    mm = document.getElementById('mm').value
+    yyyy = document.getElementById('yyyy').value
+    if len(number) == 16 and len(cvc) == 3 and len(mm) == 2 and len(yyyy) == 4:
+        yyyy = int(yyyy)
+        if int(yyyy) > 2016:
+            window.jQuery('#validation').prop('disabled', False)
+        else:
+             window.jQuery('#validation').prop('disabled', True)
+    else:
+        print("dddd")
+        window.jQuery('#validation').prop('disabled', True)
+
+
+document.getElementById('number').addEventListener('keypress', carte)
+document.getElementById('number').addEventListener('keyup', carte)
+document.getElementById('number').addEventListener('blur', carte)
+document.getElementById('number').addEventListener('focus', carte)
+document.getElementById('cvc').addEventListener('keypress', carte)
+document.getElementById('cvc').addEventListener('keyup', carte)
+document.getElementById('cvc').addEventListener('blur', carte)
+document.getElementById('cvc').addEventListener('focus', carte)
+document.getElementById('mm').addEventListener('keypress', carte)
+document.getElementById('mm').addEventListener('keyup', carte)
+document.getElementById('mm').addEventListener('blur', carte)
+document.getElementById('mm').addEventListener('focus', carte)
+document.getElementById('yyyy').addEventListener('keypress', carte)
+document.getElementById('yyyy').addEventListener('keyup', carte)
+document.getElementById('yyyy').addEventListener('blur', carte)
+document.getElementById('yyyy').addEventListener('focus', carte)
+
+
+def reser(ev):
+    number = document.getElementById('number').value
+    if len(number) > 15 :
+        ev.preventDefault()
+
+document.getElementById('number').addEventListener('keypress', reser)
+document.getElementById('number').addEventListener('keyup', reser)
+document.getElementById('number').addEventListener('blur', reser)
+document.getElementById('number').addEventListener('focus', reser)
+
+
+def cvc(ev):
+    cvc = document.getElementById('cvc').value
+    if len(cvc) > 2 :
+        ev.preventDefault()
+
+document.getElementById('cvc').addEventListener('keypress', cvc)
+document.getElementById('cvc').addEventListener('keyup', cvc)
+document.getElementById('cvc').addEventListener('blur', cvc)
+document.getElementById('cvc').addEventListener('focus', cvc)
+
+
+
+def mm(ev):
+    mm = document.getElementById('mm').value
+    if len(mm) > 1 :
+        ev.preventDefault()
+
+document.getElementById('mm').addEventListener('keypress', mm)
+document.getElementById('mm').addEventListener('keyup', mm)
+document.getElementById('mm').addEventListener('blur', mm)
+document.getElementById('mm').addEventListener('focus', mm)
+
+
+def yyyy(ev):
+    yyyy = document.getElementById('yyyy').value
+    if len(yyyy) > 3 :
+        ev.preventDefault()
+
+document.getElementById('yyyy').addEventListener('keypress', yyyy)
+document.getElementById('yyyy').addEventListener('keyup', yyyy)
+document.getElementById('yyyy').addEventListener('blur', yyyy)
+document.getElementById('yyyy').addEventListener('focus', yyyy)
+       
+        
+
+
+	
+
+
+
+
+</script>
+
+
+
+
+{{end}}

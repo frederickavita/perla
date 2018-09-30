@@ -1,0 +1,9 @@
+<ul class="women_pagenation">
+<li>Page:</li>
+{{if page < 0:}}
+<li class="active"><a href="#">&laquo;</a></li>
+{{pass}}
+{{if len(caftansnoms)>=30:}}
+<li><a href="#">&raquo;</a></li>
+{{pass}}
+</ul>
